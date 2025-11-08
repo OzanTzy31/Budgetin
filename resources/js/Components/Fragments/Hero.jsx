@@ -13,8 +13,8 @@ const Hero = () => {
                 </p>
             </div>
             <div className="flex items-center justify-center min-h-screen text-[var(--text)]">
-                <div className="grid grid-cols-1 gap-4 p-4 bg-transparent sm:grid-cols-2">
-                    <Card className="w-full max-w-sm bg-[var(--card)]">
+                <div className="grid grid-cols-1 gap-10 p-20 text-center bg-transparent sm:grid-cols-2">
+                    <Card className="w-full max-w-sm bg-[var(--card)] hover:scale-110 hover:shadow-md duration-300">
                         <CardHeader>
                             <CardTitle>TRACK MONEY</CardTitle>
                         </CardHeader>
@@ -25,7 +25,7 @@ const Hero = () => {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="w-full max-w-sm bg-[var(--app-card)]">
+                    <Card className="w-full max-w-sm bg-[var(--app-card)] hover:scale-110 hover:shadow-md duration-300">
                         <CardHeader>
                             <CardTitle>MONTHLY SUMMARY</CardTitle>
                         </CardHeader>
@@ -38,7 +38,7 @@ const Hero = () => {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="w-full max-w-sm bg-[var(--app-card)]">
+                    <Card className="w-full max-w-sm bg-[var(--app-card)] hover:scale-110 hover:shadow-md duration-300">
                         <CardHeader>
                             <CardTitle>SAFE AND SECURE</CardTitle>
                         </CardHeader>
@@ -51,7 +51,7 @@ const Hero = () => {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="w-full max-w-sm bg-[var(--app-card)]">
+                    <Card className="w-full max-w-sm bg-[var(--app-card)] hover:scale-110 hover:shadow-md duration-300">
                         <CardHeader>
                             <CardTitle>EASY TO USE</CardTitle>
                         </CardHeader>

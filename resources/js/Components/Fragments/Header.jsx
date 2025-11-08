@@ -21,7 +21,7 @@ const Header = () => {
 
     if (!user) {
         return (
-            <nav className="flex flex-row justify-between w-full p-4 text-[var(--app-text)] bg-[var(--app-bg-surface)] fixed top-0 border border-b-black">
+            <nav className="flex flex-row justify-between w-full p-4 bg-[var(--app-bg-surface)] fixed top-0 border border-b-black">
                 <div>
                     <Link href="#" className="text-2xl font-bold text-black">
                         BUDGETIN

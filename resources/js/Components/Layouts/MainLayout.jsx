@@ -1,7 +1,7 @@
 const MainLayout = (props) => {
     const { children } = props;
 
-    return <div className="pt-36">{children}</div>;
+    return <div className="flex flex-col min-h-screen">{children}</div>;
 };
 
 export default MainLayout;
