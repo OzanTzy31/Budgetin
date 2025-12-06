@@ -11,50 +11,46 @@ class DashboardController extends Controller
 {
     public function transaction(Request $request)
     {
-    $userId = $request->user()->id;
+        $userId = $request->user()->id;
 
-    $orderExpr = "COALESCE(transaction_date, created_at)";
+        $orderExpr = "COALESCE(transaction_date, created_at)";
+        
+        $transaction = Transaction::with('category:id,name')
+            ->where('user_id', $userId)
+            ->orderByRaw("$orderExpr DESC")
+            ->paginate(5)
+            ->withQueryString();
 
-    // daftar transaksi (tetap paginated)
-    $tx = Transaction::with('category:id,name')
-        ->where('user_id', $userId)
-        ->orderByRaw("$orderExpr DESC")
-        ->paginate(5)
-        ->withQueryString();
+        $dateCol = "COALESCE(transaction_date, created_at)";
 
-    // field tanggal yang dipakai untuk agregasi
-    $dateCol = "COALESCE(transaction_date, created_at)";
+        $start = now()->startOfMonth()->startOfDay();
+        $end   = now()->endOfMonth()->endOfDay();
 
-    // summary bulan berjalan
-    $start = now()->startOfMonth()->startOfDay();
-    $end   = now()->endOfMonth()->endOfDay();
+        $current = Transaction::where('user_id', $userId)
+            ->whereRaw("$dateCol BETWEEN ? AND ?", [$start, $end]) // ← perbaikan utama
+            ->selectRaw("SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END) AS income")
+            ->selectRaw("SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS expense")
+            ->first();
 
-    $current = Transaction::where('user_id', $userId)
-        ->whereRaw("$dateCol BETWEEN ? AND ?", [$start, $end]) // ← perbaikan utama
-        ->selectRaw("SUM(CASE WHEN type = 'income' THEN amount ELSE 0 END) AS income")
-        ->selectRaw("SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS expense")
-        ->first();
+        $monthly = DB::table('transactions')
+            ->where('user_id', $userId)
+            ->selectRaw("DATE_FORMAT($dateCol, '%Y-%m') AS ym")
+            ->selectRaw("SUM(CASE WHEN type = 'income'  THEN amount ELSE 0 END) AS income")
+            ->selectRaw("SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS expense")
+            ->groupBy('ym')
+            ->orderBy('ym', 'asc')
+            ->get();
 
-    // summary per bulan (untuk chart/riwayat)
-    $monthly = DB::table('transactions')
-        ->where('user_id', $userId)
-        ->selectRaw("DATE_FORMAT($dateCol, '%Y-%m') AS ym")
-        ->selectRaw("SUM(CASE WHEN type = 'income'  THEN amount ELSE 0 END) AS income")
-        ->selectRaw("SUM(CASE WHEN type = 'expense' THEN amount ELSE 0 END) AS expense")
-        ->groupBy('ym')
-        ->orderBy('ym', 'asc')
-        ->get();
-
-    return Inertia::render('dashboard', [
-        'transactions' => $tx,
-        'summary' => [
-            'current_month' => [
-                'key'     => now()->format('Y-m'),
-                'income'  => (float) ($current->income  ?? 0),
-                'expense' => (float) ($current->expense ?? 0),
+        return Inertia::render('dashboard', [
+            'transactions' => $transaction,
+            'summary' => [
+                'current_month' => [
+                    'key'     => now()->format('Y-m'),
+                    'income'  => (float) ($current->income  ?? 0),
+                    'expense' => (float) ($current->expense ?? 0),
+                ],
+                'by_month' => $monthly,
             ],
-            'by_month' => $monthly, // [{ ym: '2025-10', income: 123, expense: 456 }, ...]
-        ],
-    ]);
+        ]);
     }
 }

@@ -15,7 +15,7 @@ const LoginForm = () => {
     };
 
     return (
-        <form onSubmit={submit} className="flex flex-col gap-y-4">
+        <form onSubmit={submit} className="flex flex-col mt-2 gap-y-6 ">
             <Label htmlFor="email">email</Label>
             <Input
                 id="email"
@@ -36,7 +36,7 @@ const LoginForm = () => {
                 onChange={(e) => setData("password", e.target.value)}
             ></Input>
 
-            <Button variant="outline">Login</Button>
+            <Button variant="">Login</Button>
         </form>
     );
 };

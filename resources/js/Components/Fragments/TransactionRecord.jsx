@@ -6,9 +6,8 @@ const TransactionRecord = () => {
 
     const { delete: destroy } = useForm();
 
-    function handleEdit(e, id) {
+    function handleEdit(e) {
         e.preventDefault();
-        patch(`/transactions/${transaction.id}`);
     }
 
     function handleDelete(e, id) {
@@ -39,12 +38,14 @@ const TransactionRecord = () => {
                                 </p>
                             </td>
                             <td className="py-2">{t.transaction_date}</td>
-                            <td className="flex py-2 gap-x-2">
+                            <td className="flex justify-center py-2 gap-x-2">
                                 <Button
                                     type="button"
-                                    onClick={(e) => handleEdit(e, t.id)}
+                                    onClick={(e) => handleEdit(e)}
                                 >
-                                    edit
+                                    <Link href={`/transactions/${t.id}/edit`}>
+                                        Edit
+                                    </Link>
                                 </Button>
                                 <Button
                                     type="button"

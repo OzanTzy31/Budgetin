@@ -3,10 +3,11 @@ import MainLayout from "../Components/Layouts/MainLayout";
 import Navbar from "../Components/Fragments/Navbar";
 import TransactionForm from "../Components/Fragments/TransactionForm";
 import { useState } from "react";
+import SideBar from "../Components/Fragments/Sidebar";
 import MonthlyCard from "../Components/Fragments/MonthlyCard";
 import TransactionRecord from "../Components/Fragments/TransactionRecord";
 
-const DashboardPage = () => {
+const TransactionPage = () => {
     const [tForm, setTForm] = useState(false);
 
     return (
@@ -25,19 +26,19 @@ const DashboardPage = () => {
                 </div>
             </div>
             <MainLayout>
-                <div>
-                    {/* <SideBar></SideBar> */}
-                    <div className="col-span-3">
+                <div className="grid h-full md:grid-cols-4 lg:grid-cols-8">
+                    <SideBar></SideBar>
+
+                    <div className="col-span-3 lg:col-span-7">
                         <Navbar></Navbar>
                         <div>
-                            <div className="px-6">
+                            <div className="px-4">
                                 <div className="flex justify-end">
                                     <Button onClick={() => setTForm(true)}>
                                         Add Transaction
                                     </Button>
+                                    <TransactionRecord></TransactionRecord>
                                 </div>
-                                <MonthlyCard></MonthlyCard>
-                                <TransactionRecord></TransactionRecord>
                             </div>
                         </div>
                     </div>
@@ -47,4 +48,4 @@ const DashboardPage = () => {
     );
 };
 
-export default DashboardPage;
+export default TransactionPage;

@@ -1,6 +1,7 @@
 import { Input } from "@/Components/ui/input";
 import { Button } from "@/Components/ui/button";
 import { useForm } from "@inertiajs/react";
+import { Label } from "@/Components/ui/label";
 
 const RegisterForm = () => {
     const { data, setData, post, processing, errors } = useForm({
@@ -19,6 +20,7 @@ const RegisterForm = () => {
 
     return (
         <form onSubmit={submit} className="flex flex-col gap-y-4">
+            <Label htmlFor="name">name</Label>
             <Input
                 label="name"
                 name="name"
@@ -28,6 +30,7 @@ const RegisterForm = () => {
                 onChange={(e) => setData("name", e.target.value)}
             ></Input>
 
+            <Label htmlFor="email">email</Label>
             <Input
                 label="email"
                 name="email"
@@ -37,6 +40,7 @@ const RegisterForm = () => {
                 onChange={(e) => setData("email", e.target.value)}
             ></Input>
 
+            <Label htmlFor="password">password</Label>
             <Input
                 label="password"
                 name="password"
@@ -46,6 +50,7 @@ const RegisterForm = () => {
                 onChange={(e) => setData("password", e.target.value)}
             ></Input>
 
+            <Label htmlFor="password-confirmation">confirm password</Label>
             <Input
                 label="password_confirmation"
                 name="password_confirmation"

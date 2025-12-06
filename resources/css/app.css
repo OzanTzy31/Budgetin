@@ -38,7 +38,7 @@
         --app-text-muted: #475569;
         --app-border: #d5d9e2;
 
-        --app-primary: #22d3ee;
+        --app-primary: #109e7d;
         --app-primary-hover: #06b6d4;
         --app-accent: #d946ef;
 
@@ -122,5 +122,30 @@
     }
     body {
         @apply bg-background text-foreground;
+    }
+}
+
+@layer components {
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-fade-up {
+        animation: fade-up 0.6s ease-out;
+    }
+
+    .animate-fade-in {
+        animation: fade-in 0.5s ease-out;
+    }
+}
+
+@keyframes fade-up {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

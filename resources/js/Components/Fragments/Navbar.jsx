@@ -10,7 +10,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Header = () => {
+const Navbar = () => {
     const { auth } = usePage().props;
     const user = auth?.user;
 
@@ -21,10 +21,11 @@ const Header = () => {
 
     if (!user) {
         return (
-            <nav className="flex flex-row justify-between w-full p-4 bg-[var(--app-bg-surface)] fixed top-0 border border-b-black">
+            <nav className="fixed top-0 flex flex-row justify-between w-full p-4 bg-transparent border backdrop-blur-md">
                 <div>
                     <Link href="#" className="text-2xl font-bold text-black">
-                        BUDGETIN
+                        Budget{" "}
+                        <span className="text-[var(--app-primary)]">In</span>
                     </Link>
                 </div>
                 <div className="flex gap-x-3">
@@ -40,10 +41,10 @@ const Header = () => {
     }
 
     return (
-        <nav className="flex flex-row justify-between w-full p-4 text-[var(--text)] bg-[var(--app-bg-surface)] fixed top-0 border border-transparent border-b-black">
+        <nav className="fixed top-0 z-50 flex flex-row justify-between w-full p-4 border bg-white/50 backdrop-blur-md">
             <div>
                 <Link href="#" className="text-2xl font-bold text-black">
-                    BUDGETIN
+                    Budget <span className="text-[var(--app-primary)]">In</span>
                 </Link>
             </div>
             <div>
@@ -71,4 +72,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default Navbar;

@@ -1,8 +1,6 @@
 import MainLayout from "../Components/Layouts/MainLayout";
-// import { Label } from "@/Components/ui/label";
-// import { Input } from "@/Components/ui/input";
 import Hero from "../Components/Fragments/Hero";
-import Header from "../Components/Fragments/Header";
+import Navbar from "../Components/Fragments/Navbar";
 import Footer from "../Components/Fragments/Footer";
 
 const LandingPage = () => {
@@ -10,7 +8,7 @@ const LandingPage = () => {
         <>
             <div className="bg-[var(--background)]">
                 <MainLayout>
-                    <Header></Header>
+                    <Navbar></Navbar>
                     <Hero></Hero>
                     <Footer></Footer>
                 </MainLayout>

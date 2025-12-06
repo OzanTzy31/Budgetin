@@ -4,7 +4,7 @@ import RegisterForm from "../Components/Fragments/RegisterForm";
 const LoginPage = () => {
     return (
         <div>
-            <AuthLayout title="Login" type="register">
+            <AuthLayout title="Sign Up" type="register">
                 <RegisterForm />
             </AuthLayout>
         </div>

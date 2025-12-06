@@ -11,40 +11,39 @@ import {
 } from "@/components/ui/select";
 import { useForm } from "@inertiajs/react";
 
-const TransactionForm = (props) => {
-    const { setTForm } = props;
-    const { data, setData, post, processing, errors } = useForm({
-        category_id: "",
-        type: "expense",
-        amount: "",
-        description: "",
-        transaction_date: "",
+const EditForm = ({ transaction, onClose }) => {
+    const { data, setData, put, processing, errors } = useForm({
+        category_id: transaction.category_id ?? "",
+        type: transaction.type ?? "expense",
+        amount: transaction.amount ?? "",
+        description: transaction.description ?? "",
+        // pastikan ini sudah format "YYYY-MM-DD" dari backend
+        transaction_date: transaction.transaction_date ?? "",
     });
 
     const submit = (e) => {
         e.preventDefault();
-        post("/transactions", {
-            preserveScroll: true,
+        put(`/transactions/${transaction.id}`, {
+            onSuccess: () => {
+                if (onClose) onClose();
+            },
         });
     };
 
-    const close = (e) => {
-        e.preventDefault();
-        setTForm(false);
-    };
-
     return (
-        <form onSubmit={submit} className="">
+        <form onSubmit={submit}>
             <div className="relative">
                 <Button
                     variant="outline"
                     size="icon-sm"
+                    type="button" // penting: biar nggak submit form
                     className="absolute rounded-full right-[-10px] top-[-10px]"
-                    onClick={close}
+                    onClick={onClose}
                 >
                     x
                 </Button>
             </div>
+
             <Card className="p-4 space-y-3">
                 <div>
                     <Label htmlFor="description">Deskripsi</Label>
@@ -122,17 +121,14 @@ const TransactionForm = (props) => {
                             {errors.transaction_date}
                         </p>
                     )}
-                    <p className="text-xs text-muted-foreground">
-                        Kosongkan jika ingin default ke tanggal hari ini.
-                    </p>
                 </div>
 
                 <Button type="submit" disabled={processing}>
-                    Tambah
+                    Simpan Perubahan
                 </Button>
             </Card>
         </form>
     );
 };
 
-export default TransactionForm;
+export default EditForm;
