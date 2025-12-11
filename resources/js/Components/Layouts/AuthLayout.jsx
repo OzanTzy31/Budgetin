@@ -5,7 +5,9 @@ const AuthLayout = (props) => {
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="w-full max-w-xs">
-                <h1 className="text-2xl font-bold text-blue-800">{title}</h1>
+                <h1 className="text-2xl font-bold text-[var(--app-primary)]">
+                    {title}
+                </h1>
                 <p>Welcome, please enter your details</p>
                 {children}
                 <AuthSwitch type={type} />
@@ -19,7 +21,10 @@ const AuthSwitch = ({ type }) => {
         return (
             <p>
                 Don't have an account?{" "}
-                <Link href="/register" className="font-bold text-blue-800">
+                <Link
+                    href="/register"
+                    className="font-bold text-[var(--app-primary)]"
+                >
                     Sign up
                 </Link>
             </p>
@@ -28,7 +33,10 @@ const AuthSwitch = ({ type }) => {
         return (
             <p>
                 Already have an account?{" "}
-                <Link href="/login" className="font-bold text-blue-800">
+                <Link
+                    href="/login"
+                    className="font-bold text-[var(--app-primary)]"
+                >
                     Sign in
                 </Link>
             </p>

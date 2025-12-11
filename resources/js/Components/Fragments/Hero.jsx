@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/Components/ui/card";
 const Hero = () => {
     return (
         <>
-            <div className="flex flex-col gap-8 text-center text-[var(--app-text)]">
+            <div className="flex flex-col gap-8 text-center mt-14 text-[var(--app-text)]">
                 <h1 className="text-4xl font-extrabold">
                     <span className="bg-gradient-to-r from-[var(--app-primary)] to-[var(--income)] text-transparent bg-clip-text animate-fade-up">
                         MAKE YOUR MONEY VISIBLE
@@ -13,10 +13,8 @@ const Hero = () => {
                     className="px-24 animate-fade-up"
                     style={{ animationDelay: "0.3s" }}
                 >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Placeat ratione est deserunt eaque provident, velit odit
-                    omnis sint at cumque veniam ipsa nostrum ea, deleniti eius
-                    distinctio natus rem voluptates.
+                    Budgetin helps you track expenses, manage your budget, and
+                    achieve your financial goals in a simple and fun way.
                 </p>
                 <p
                     className="mt-6 text-sm text-muted-foreground animate-fade-up"
@@ -27,8 +25,9 @@ const Hero = () => {
                 </p>
             </div>
             <div
-                className="flex flex-col items-center justify-center min-h-screen text-[var(--text)] animate-fade-up"
+                className="flex flex-col items-center justify-center min-h-screen text-[var(--text)] animate-fade-up mt-40"
                 style={{ animationDelay: "0.8" }}
+                id="feature"
             >
                 <div className="flex flex-col text-center gap-y-4">
                     <h1 className="text-xl font-bold text-[var(--app-primary)]">

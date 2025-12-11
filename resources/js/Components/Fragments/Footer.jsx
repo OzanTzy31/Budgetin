@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react";
+import { Button } from "../ui/button";
 
 const Footer = () => {
     return (
@@ -18,11 +19,20 @@ const Footer = () => {
                         </p>
                     </div>
                     <div className="flex flex-col w-1/2 px-4 gap-y-4">
-                        <h1>kocak</h1>
+                        <a href="#">Pricing</a>
+                        <a href="#feature">Feature</a>
                     </div>
                 </div>
             </div>
-            <div className="pt-8 border-t border-slate-500">test</div>
+            <div className="flex px-4 pt-8 border-t border-slate-500">
+                <div className="w-1/2">
+                    <p>© 2025 Budgetin.</p>
+                </div>
+                <div className="flex w-1/2 gap-x-6">
+                    <a href="">Kebijakan Privasi</a>
+                    <a href="">Syarat & Ketentuan</a>
+                </div>
+            </div>
         </footer>
     );
 };

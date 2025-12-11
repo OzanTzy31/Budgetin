@@ -15,8 +15,7 @@ class DashboardController extends Controller
 
         $orderExpr = "COALESCE(transaction_date, created_at)";
         
-        $transaction = Transaction::with('category:id,name')
-            ->where('user_id', $userId)
+        $transaction = Transaction::where('user_id', $userId)
             ->orderByRaw("$orderExpr DESC")
             ->paginate(5)
             ->withQueryString();

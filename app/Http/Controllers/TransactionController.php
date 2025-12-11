@@ -17,7 +17,6 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'category_id'      => ['nullable','exists:categories,id'],
             'type'             => ['required','in:income,expense'],
             'amount'           => ['required','numeric','min:0'],
             'description'      => ['nullable','string','max:65535'],
@@ -37,7 +36,6 @@ class TransactionController extends Controller
         return Inertia::render('edit', [
             'transactions' => [
                 'id'              => $transaction->id,
-                'category_id'     => $transaction->category_id,
                 'type'            => $transaction->type,
                 'amount'          => $transaction->amount,
                 'description'     => $transaction->description,
@@ -53,7 +51,6 @@ class TransactionController extends Controller
         }
 
         $validated = $request->validate([
-            'category_id'      => ['nullable','exists:categories,id'],
             'type'             => ['required','in:income,expense'],
             'amount'           => ['required','numeric','min:0'],
             'description'      => ['nullable','string','max:65535'],

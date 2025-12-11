@@ -19,7 +19,7 @@ const RegisterForm = () => {
     console.log(data.name);
 
     return (
-        <form onSubmit={submit} className="flex flex-col gap-y-4">
+        <form onSubmit={submit} className="flex flex-col mt-4 gap-y-4">
             <Label htmlFor="name">name</Label>
             <Input
                 label="name"

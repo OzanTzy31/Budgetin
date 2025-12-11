@@ -15,7 +15,7 @@ const Navbar = () => {
     const user = auth?.user;
 
     const handleLogout = (e) => {
-        e?.preventDefault?.();
+        e.preventDefault();
         router.post("/logout");
     };
 
@@ -29,10 +29,20 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="flex gap-x-3">
-                    <Button asChild size="sm" variant="secondary">
+                    <Button
+                        asChild
+                        size="sm"
+                        variant="outline"
+                        className="border-transparent hover:scale-95"
+                    >
                         <Link href="/login">Login</Link>
                     </Button>
-                    <Button asChild size="sm" variant="secondary">
+                    <Button
+                        asChild
+                        size="sm"
+                        variant="default"
+                        className="bg-[var(--app-primary)] text-white hover:bg-[var(--app-primary)] hover:scale-95"
+                    >
                         <Link href="/register">Register</Link>
                     </Button>
                 </div>

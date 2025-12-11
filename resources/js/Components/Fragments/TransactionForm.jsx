@@ -117,11 +117,6 @@ const TransactionForm = (props) => {
                             setData("transaction_date", e.target.value)
                         }
                     />
-                    {errors.transaction_date && (
-                        <p className="text-sm text-red-500">
-                            {errors.transaction_date}
-                        </p>
-                    )}
                     <p className="text-xs text-muted-foreground">
                         Kosongkan jika ingin default ke tanggal hari ini.
                     </p>
